@@ -1,0 +1,9 @@
+Flask
+flask-wtf
+torch
+torchvision
+opencv-python-headless
+numpy
+scipy
+wtforms
+ultralytics
