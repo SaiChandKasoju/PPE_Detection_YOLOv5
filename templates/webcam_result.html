@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center">Live Webcam PPE Detection</h2>
+<div class="d-flex justify-content-center">
+    <img src="{{ url_for('webcam_stream') }}" width="720" class="img-fluid border border-success">
+</div>
+<div id="alert-sound"></div>
+<script>
+setInterval(() => {
+  fetch('/alert_status')
+    .then(res => res.json())
+    .then(data => {
+        if (data.alert) {
+            const alertBox = document.getElementById('alert-sound');
+            alertBox.innerHTML = `
+              <audio autoplay><source src="{{ url_for('static', filename='alert.wav') }}" type="audio/wav"></audio>
+              <div class="alert alert-danger mt-3 text-center">⚠️ PPE Violation Detected!</div>
+            `;
+        }
+    });
+}, 1500);
+</script>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 class="text-center">PPE Detection from Uploaded Video</h2>
+<div class="d-flex justify-content-center">
+    <img src="{{ url_for('video') }}" width="720" class="img-fluid border border-primary">
+</div>
+<div class="text-center mt-3">
+    <p class="text-danger">⚠️ Violations will trigger a buzzer and highlight red boxes.</p>
+</div>
+<div id="alert-sound"></div>
+<script>
+setInterval(() => {
+  fetch('/alert_status')
+    .then(res => res.json())
+    .then(data => {
+        if (data.alert) {
+            const alertBox = document.getElementById('alert-sound');
+            alertBox.innerHTML = `
+              <audio autoplay><source src="{{ url_for('static', filename='alert.wav') }}" type="audio/wav"></audio>
+              <div class="alert alert-danger mt-3 text-center">⚠️ PPE Violation Detected!</div>
+            `;
+        }
+    });
+}, 1500);
+</script>
+{% endblock %}

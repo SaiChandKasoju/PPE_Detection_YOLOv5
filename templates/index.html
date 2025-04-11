@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="text-center text-primary">PPE Detection on Construction Sites</h2>
+    <p class="lead text-center">
+        Personal Protective Equipment (PPE) is vital for ensuring safety on construction sites. Helmets, vests, and face masks protect workers from hazards such as falling objects, dust, or chemical exposure. Manual PPE inspection can be time-consuming and error-prone. This system leverages a YOLOv5l object detection model trained with custom annotations to automatically detect PPE compliance across images, videos, or live feeds.
+    </p>
+
+    <h5 class="mt-4 text-center text-info">Live Demo: PPE Detection in Action</h5>
+    <div id="ppeCarousel" class="carousel slide mx-auto d-block" style="width: 70%;" data-bs-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="{{ url_for('static', filename='images/img1.jpg') }}" class="d-block w-100 border border-info rounded" alt="PPE Image 1">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/img2.jpg') }}" class="d-block w-100 border border-info rounded" alt="PPE Image 2">
+            </div>
+            <div class="carousel-item">
+                <img src="{{ url_for('static', filename='images/img3.jpg') }}" class="d-block w-100 border border-info rounded" alt="PPE Image 3">
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#ppeCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#ppeCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        </button>
+    </div>
+
+    <div class="text-center mt-5">
+        <a href="/upload" class="btn btn-success m-2">Upload Video</a>
+        <a href="/webcam_view" class="btn btn-warning m-2">Webcam Detection</a>
+        <a href="/image" class="btn btn-info m-2">Upload Image</a>
+    </div>
+</div>
+{% endblock %}
